@@ -43,7 +43,7 @@ pub enum Command {
         #[clap(parse(from_os_str))]
         root_dir: Option<PathBuf>,
 
-        #[clap(long)]
+        #[clap(long, value_enum)]
         entry: Option<EntryOutput>,
 
         #[clap(long, short = 'i', action)]
