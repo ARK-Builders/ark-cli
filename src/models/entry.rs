@@ -6,6 +6,6 @@ pub enum EntryOutput {
     Id,
     #[clap(name = "path")]
     Path,
-    #[clap(name = "both")]
+    #[clap(name = "ip")]
     Both,
 }
