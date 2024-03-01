@@ -89,7 +89,7 @@ pub enum StorageCommand {
         #[clap(short, long)]
         versions: Option<bool>,
 
-        #[clap(short, long)]
+        #[clap(short, long, value_enum)]
         type_: Option<StorageType>,
     },
 }
@@ -109,7 +109,7 @@ pub enum FileCommand {
         #[clap(short, long, value_enum)]
         format: Option<Format>,
 
-        #[clap(short, long)]
+        #[clap(short, long, value_enum)]
         type_: Option<StorageType>,
     },
 
@@ -126,7 +126,7 @@ pub enum FileCommand {
         #[clap(short, long, value_enum)]
         format: Option<Format>,
 
-        #[clap(short, long)]
+        #[clap(short, long, value_enum)]
         type_: Option<StorageType>,
     },
 
@@ -138,7 +138,7 @@ pub enum FileCommand {
 
         id: String,
 
-        #[clap(short, long)]
+        #[clap(short, long, value_enum)]
         type_: Option<StorageType>,
     },
 }
