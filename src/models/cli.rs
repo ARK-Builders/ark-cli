@@ -106,7 +106,7 @@ pub enum FileCommand {
 
         content: String,
 
-        #[clap(short, long)]
+        #[clap(short, long, value_enum)]
         format: Option<Format>,
 
         #[clap(short, long)]
@@ -123,7 +123,7 @@ pub enum FileCommand {
 
         content: String,
 
-        #[clap(short, long)]
+        #[clap(short, long, value_enum)]
         format: Option<Format>,
 
         #[clap(short, long)]

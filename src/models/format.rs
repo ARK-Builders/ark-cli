@@ -1,19 +1,9 @@
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, clap::ValueEnum)]
 pub enum Format {
+    #[clap(name = "json")]
     KeyValue,
+    #[clap(name = "raw")]
     Raw,
-}
-
-impl std::str::FromStr for Format {
-    type Err = String;
-
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        match s.to_lowercase().as_str() {
-            "json" => Ok(Format::KeyValue),
-            "raw" => Ok(Format::Raw),
-            _ => Err("Invalid format".to_owned()),
-        }
-    }
 }
 
 pub fn key_value_to_str(s: &str) -> Result<Vec<(String, String)>, String> {
