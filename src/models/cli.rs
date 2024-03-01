@@ -61,7 +61,7 @@ pub enum Command {
         #[clap(long, short, action)]
         scores: bool,
 
-        #[clap(long)]
+        #[clap(long, value_enum)]
         sort: Option<Sort>,
 
         #[clap(long)]
