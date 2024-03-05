@@ -43,13 +43,22 @@ pub enum Command {
         #[clap(parse(from_os_str))]
         root_dir: Option<PathBuf>,
 
-        #[clap(long, value_enum)]
-        entry: Option<EntryOutput>,
-
-        #[clap(long, short = 'i', action)]
+        #[clap(
+            long,
+            short = 'i',
+            long = "id",
+            action,
+            help = "Show entries' IDs"
+        )]
         entry_id: bool,
 
-        #[clap(long, short = 'p', action)]
+        #[clap(
+            long,
+            short = 'p',
+            long = "path",
+            action,
+            help = "Show entries' paths"
+        )]
         entry_path: bool,
 
         #[clap(long, short, action)]
@@ -76,6 +85,30 @@ pub enum Command {
 
     #[clap(subcommand)]
     Storage(StorageCommand),
+}
+
+impl Command {
+    /// Get the entry output format
+    /// Default to Id
+    pub fn entry(&self) -> EntryOutput {
+        match self {
+            Command::List {
+                entry_id,
+                entry_path,
+                ..
+            } => {
+                if *entry_id && *entry_path {
+                    EntryOutput::Both
+                } else if *entry_path {
+                    EntryOutput::Path
+                } else {
+                    // Default to id
+                    EntryOutput::Id
+                }
+            }
+            _ => EntryOutput::Id,
+        }
+    }
 }
 
 #[derive(Subcommand, Debug)]
