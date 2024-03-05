@@ -54,9 +54,8 @@ async fn main() {
 
     match &args.command {
         Command::List {
-            entry,
-            entry_id,
-            entry_path,
+            entry_id: _,
+            entry_path: _,
 
             root_dir,
             modified,
@@ -66,17 +65,7 @@ async fn main() {
             filter,
         } => {
             let root = provide_root(root_dir);
-
-            let entry_output = match (entry, entry_id, entry_path) {
-                (Some(e), false, false) => e,
-                (None, true, false) => &EntryOutput::Id,
-                (None, false, true) => &EntryOutput::Path,
-                (None, true, true) => &EntryOutput::Both,
-                (None, false, false) => &EntryOutput::Id, // default mode
-                _ => panic!(
-                    "incompatible entry output options, please choose only one"
-                ),
-            };
+            let entry_output = &args.command.entry();
 
             let index = provide_index(&root).expect("could not provide index");
 
